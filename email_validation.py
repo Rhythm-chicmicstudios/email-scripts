@@ -128,7 +128,8 @@ def verify_email(email, logger):
             try:
                 server = smtplib.SMTP(mx_host, timeout=5)
                 server.helo()
-                server.mail("rakumar@gmail.in")
+                dynamic_email = f"rakumar@{domain}"
+                server.mail(dynamic_email)
                 code, _ = server.rcpt(email)
                 server.quit()
 

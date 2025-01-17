@@ -128,19 +128,27 @@ def verify_email(email, logger):
             try:
                 server = smtplib.SMTP(mx_host, timeout=5)
                 server.helo()
-                server.mail("rakumar@gmail.in")
+                dynamic_email = f"rakumar@{domain}"
+                server.mail(dynamic_email)
                 code, _ = server.rcpt(email)
                 server.quit()
 
-                if code == 250:
+                # Categorize SMTP responses based on 2xx to 5xx ranges
+                if 200 <= code <= 299:
                     logger.debug(f"Email '{email}' is valid (accepted by {mx_host}).")
                     return True  # Valid email address
-                elif code in {550, 553}:
-                    logger.debug(f"Email '{email}' is invalid (rejected by {mx_host} with code {code}).")
-                    return False  # Explicit rejection
-                elif code in {450, 451}:
-                    logger.debug(f"Email '{email}' has a temporary failure (code {code}) with {mx_host}.")
+                elif 500 <= code <= 599:
+                    # Handle permanent failures like 550 (Mailbox unavailable)
+                    logger.debug(f"Permanent failure for email '{email}' (Rejected by {mx_host} with code {code}).")
+                    return False  # Permanent rejection
+                elif 421 <= code <= 449 or 450 <= code <= 451:
+                    # Handle temporary failures (e.g., server overload, mailbox unavailable)
+                    logger.debug(f"Temporary failure for email '{email}' (Code {code} from {mx_host}).")
                     return "TEMPORARY_FAILURE"
+                else:
+                    # Handle other codes as unknown errors or unhandled scenarios
+                    logger.debug(f"Unknown response code {code} for email '{email}' from {mx_host}.")
+                    return "UNKNOWN_ERROR"
             except (smtplib.SMTPConnectError, socket.error) as e:
                 logger.warning(f"Error verifying email {email} with {mx_host}: {e}")
                 return None
