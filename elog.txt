@@ -1,0 +1,12 @@
+[
+    {'id': 1, 'email': 'transport@backmarket.com'}, {'id': 2, 'email': 'companyinfo@mail.bankrate.com'},
+    {'id': 3, 'email': 'webmaster@bankrate.com'}, {'id': 4, 'email': 'webmaster@mail.bankrate.com'},
+    {'id': 5, 'email': 'feedback@mybankrate.com'}, {'id': 6, 'email': 'legal@bankrate.com'}, 
+    {'id': 7, 'email': 'customersupport@bankrate.com'}, {'id': 8, 'email': 'team@bark.com'}, 
+    {'id': 9, 'email': 'contact@bark.com'}, {'id': 10, 'email': 'privacy@bark.com'}, 
+    {'id': 11, 'email': 'privacy@bdo.ca'}, {'id': 12, 'email': 'cbyford@bdo.ca'}, {'id': 13, 'email': 'support@beefree.io'}, 
+    {'id': 14, 'email': 'privacy@beefree.io'}, {'id': 15, 'email': 'support@benchling.com'}, {'id': 16, 'email': 'contact@benchling.com'},
+    {'id': 17, 'email': 'privacy@benchling.com'}, {'id': 18, 'email': 'inquiries@benchling.com'}, {'id': 19, 'email': 'press@benchling.com'},
+    {'id': 20, 'email': 'legal@benchling.com'}, {'id': 21, 'email': 'support@biorender.com'}, {'id': 22, 'email': 'info@biorender.com'}, 
+    {'id': 23, 'email': 'info@bitmex.com'}, {'id': 24, 'email': 'support@bitmex.com'}
+]
